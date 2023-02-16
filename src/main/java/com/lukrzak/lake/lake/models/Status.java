@@ -15,7 +15,7 @@ public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "status_id")
-    private long id;
+    private Long id;
     private StatusEnumeration status;
 
 }

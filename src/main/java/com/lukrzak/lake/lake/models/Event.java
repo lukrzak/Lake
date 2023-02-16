@@ -16,7 +16,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "event_id")
-    private long id;
+    private Long id;
     private Date startDate;
     private Date endDate;
     private String title;

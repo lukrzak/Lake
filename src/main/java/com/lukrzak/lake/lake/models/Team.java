@@ -14,7 +14,7 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "team_id")
-    private long id;
+    private Long id;
     private String name;
 
 }
