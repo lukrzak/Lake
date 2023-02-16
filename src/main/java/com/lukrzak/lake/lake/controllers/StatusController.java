@@ -6,10 +6,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class StatusController {
-    @Autowired
-    private final StatusService statusService;
 
-    public StatusController(StatusService statusService) {
-        this.statusService = statusService;
-    }
 }

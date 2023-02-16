@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-    @Query(value = "SELECT e FROM events e WHERE e.team.id = :id")
-    List<Event> getAllEventsOfGivenTeamId(Long id);
+    //@Query(value = "SELECT e FROM events e WHERE e.team.id = :id")
+    //List<Event> getAllEventsOfGivenTeamId(Long id);
 }
