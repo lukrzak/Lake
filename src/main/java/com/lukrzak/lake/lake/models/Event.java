@@ -21,5 +21,6 @@ public class Event {
     private Date endDate;
     private String title;
     private String description;
-
+    @ManyToOne
+    private Team team;
 }

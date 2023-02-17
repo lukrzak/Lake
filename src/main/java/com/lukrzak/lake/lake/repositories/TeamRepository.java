@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
-    @Query(value = "FROM teams t WHERE t.user.id = :id")
+    @Query(value = "FROM teams t WHERE t.user.id = :id", nativeQuery = true)
     List<Team> getAllTeamsOfGivenUserId(Long id);
 }
