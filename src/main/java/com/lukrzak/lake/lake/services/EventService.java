@@ -17,7 +17,6 @@ public class EventService {
     }
 
     public List<Event> getAllEventsOfGivenTeamId(Long id){
-        //return eventRepository.getAllEventsOfGivenTeamId(id);
-        return null;
+        return eventRepository.getAllEventsOfGivenTeamId(id);
     }
 }
