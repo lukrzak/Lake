@@ -12,10 +12,23 @@ import lombok.*;
 @Getter
 @Setter
 public class Status {
+
+    public Status(StatusEnumeration status, User user, Event event) {
+        this.status = status;
+        this.user = user;
+        this.event = event;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "status_id")
     private Long id;
     private StatusEnumeration status;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Event event;
 
 }
