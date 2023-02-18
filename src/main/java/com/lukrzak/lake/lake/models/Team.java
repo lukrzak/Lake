@@ -14,6 +14,12 @@ import java.util.Set;
 @Setter
 @ToString
 public class Team {
+
+    public Team(String name, User admin) {
+        this.name = name;
+        this.admin = admin;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "team_id")
@@ -22,4 +28,8 @@ public class Team {
     @ManyToMany(mappedBy = "teams")
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
+    @OneToOne
+    @JoinColumn(name = "admin_id")
+    private User admin;
+
 }

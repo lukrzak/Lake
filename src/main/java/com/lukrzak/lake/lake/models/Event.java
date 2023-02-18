@@ -13,6 +13,14 @@ import java.util.Date;
 @Setter
 @ToString
 public class Event {
+
+    public Event(Date startDate, Date endDate, String title, String description) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.title = title;
+        this.description = description;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "event_id")
