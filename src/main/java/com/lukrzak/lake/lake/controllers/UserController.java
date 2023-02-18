@@ -4,6 +4,7 @@ import com.lukrzak.lake.lake.exceptions.UserLoginAlreadyTakenException;
 import com.lukrzak.lake.lake.models.User;
 import com.lukrzak.lake.lake.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addNewUser(@RequestBody User user) throws UserLoginAlreadyTakenException {
         userService.addNewUser(user);
     }
