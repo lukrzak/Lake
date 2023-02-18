@@ -1,12 +1,10 @@
 package com.lukrzak.lake.lake.controllers;
 
+import com.lukrzak.lake.lake.dto.TeamEventDto;
 import com.lukrzak.lake.lake.models.Event;
 import com.lukrzak.lake.lake.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +21,11 @@ public class EventController {
     @GetMapping(value = "/events/{id}")
     public List<Event> getAllEventsOfGivenTeamId(@PathVariable Long id){
         return eventService.getAllEventsOfGivenTeamId(id);
+    }
+
+    @PostMapping(value = "/events/add-event")
+    public void addNewEventForTeam(@RequestBody TeamEventDto teamEventDto){
+        eventService.addNewEventForTeam(teamEventDto);
     }
 
 }

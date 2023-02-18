@@ -1,5 +1,6 @@
 package com.lukrzak.lake.lake.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,7 +26,9 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "event_id")
     private Long id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd-HH-mm")
     private Date startDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd-HH-mm")
     private Date endDate;
     private String title;
     private String description;
