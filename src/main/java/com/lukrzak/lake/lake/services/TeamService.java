@@ -1,5 +1,6 @@
 package com.lukrzak.lake.lake.services;
 
+import com.lukrzak.lake.lake.dto.AddUserToTeamDto;
 import com.lukrzak.lake.lake.models.Team;
 import com.lukrzak.lake.lake.models.User;
 import com.lukrzak.lake.lake.repositories.TeamRepository;
@@ -27,15 +28,19 @@ public class TeamService {
 
     public void addNewTeam(Team team){
         teamRepository.save(team);
-        addUserToTeam(team.getAdmin(), team.getId());
+        AddUserToTeamDto adminUser = new AddUserToTeamDto();
+        adminUser.setTeam_id(team.getId());
+        adminUser.setUser(team.getAdmin());
+        addUserToTeam(adminUser);
         System.out.println("Team" + team.getName() + " added successfully");
     }
 
-    public void addUserToTeam(User user, Long id){
-        Team team = teamRepository.getTeamById(id);
-        user.addUserToTeam(team);
+    public void addUserToTeam(AddUserToTeamDto addUserToTeamDto){
+        Team team = teamRepository.getTeamById(addUserToTeamDto.getTeam_id());
+        addUserToTeamDto.getUser().addUserToTeam(team);
         teamRepository.save(team);
-        userRepository.save(user);
-        System.out.println("Added " + user.getLogin() + " user to team " + id.toString());
+        userRepository.save(addUserToTeamDto.getUser());
+        System.out.println("Added " + addUserToTeamDto.getUser().getLogin() + " user to team "
+                + addUserToTeamDto.getTeam_id().toString());
     }
 }

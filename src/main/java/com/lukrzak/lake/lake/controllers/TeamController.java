@@ -1,5 +1,6 @@
 package com.lukrzak.lake.lake.controllers;
 
+import com.lukrzak.lake.lake.dto.AddUserToTeamDto;
 import com.lukrzak.lake.lake.models.Team;
 import com.lukrzak.lake.lake.models.User;
 import com.lukrzak.lake.lake.services.TeamService;
@@ -28,8 +29,8 @@ public class TeamController {
         teamService.addNewTeam(team);
     }
 
-    @PostMapping("/teams/{id}/add-user")
-    public void addUserToTeam(@RequestBody User user, @PathVariable Long id){
-        teamService.addUserToTeam(user, id);
+    @PostMapping("/teams/add-user")
+    public void addUserToTeam(@RequestBody AddUserToTeamDto user){
+        teamService.addUserToTeam(user);
     }
 }

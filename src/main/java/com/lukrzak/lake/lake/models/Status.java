@@ -23,6 +23,7 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "status_id")
     private Long id;
+    @Enumerated(EnumType.STRING)
     private StatusEnumeration status;
     @ManyToOne
     @JoinColumn(name = "user_id")

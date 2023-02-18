@@ -23,7 +23,7 @@ public class EventController {
         return eventService.getAllEventsOfGivenTeamId(id);
     }
 
-    @PostMapping(value = "/events/add-event")
+    @PostMapping(value = "/events")
     public void addNewEventForTeam(@RequestBody TeamEventDto teamEventDto){
         eventService.addNewEventForTeam(teamEventDto);
     }
