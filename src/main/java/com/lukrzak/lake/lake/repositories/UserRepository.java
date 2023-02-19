@@ -13,6 +13,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM users u WHERE u.team.id = :id", nativeQuery = true)
     List<User> getAllUsersOfGivenTeamId(Long id);
 
-    @Query(value = "SELECT * FROM users u WHERE u.login = :name", nativeQuery = true)
-    List<User> getAllUsersWithGivenName(String name);
+    User findByLogin(String login);
 }

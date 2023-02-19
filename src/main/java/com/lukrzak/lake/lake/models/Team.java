@@ -31,5 +31,4 @@ public class Team {
     @OneToOne
     @JoinColumn(name = "admin_id")
     private User admin;
-
 }

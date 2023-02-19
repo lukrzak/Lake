@@ -3,8 +3,8 @@ package com.lukrzak.lake.lake.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -33,7 +33,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "team_id")
     )
     @ToString.Exclude
-    private Set<Team> teams = new HashSet<>();
+    private List<Team> teams = new ArrayList<>();
 
     public void addUserToTeam(Team team){
         this.teams.add(team);

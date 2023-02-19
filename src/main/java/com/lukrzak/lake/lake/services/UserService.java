@@ -21,14 +21,15 @@ public class UserService {
         return userRepository.getAllUsersOfGivenTeamId(id);
     }
 
-    public void addNewUser(User user) throws UserLoginAlreadyTakenException {
+    public User addNewUser(User user) throws UserLoginAlreadyTakenException {
         checkIfUserAlreadyExists(user);
         userRepository.save(user);
         System.out.println("User " + user.getLogin() + " added successfully");
+        return user;
     }
 
     public void checkIfUserAlreadyExists(User user) throws UserLoginAlreadyTakenException {
-        List<User> getUserWithSameUsername = userRepository.getAllUsersWithGivenName(user.getLogin());
-        if (getUserWithSameUsername.size() != 0) throw new UserLoginAlreadyTakenException();
+        User getUserWithSameUsername = userRepository.findByLogin(user.getLogin());
+        if (getUserWithSameUsername != null) throw new UserLoginAlreadyTakenException();
     }
  }
