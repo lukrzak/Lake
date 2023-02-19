@@ -18,7 +18,7 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping(value = "/events/{id}")
+    @GetMapping(value = "/events/team/{id}")
     public List<Event> getAllEventsOfGivenTeamId(@PathVariable Long id){
         return eventService.getAllEventsOfGivenTeamId(id);
     }

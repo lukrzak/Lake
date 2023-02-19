@@ -1,5 +1,6 @@
 package com.lukrzak.lake.lake;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lukrzak.lake.lake.controllers.UserController;
 import com.lukrzak.lake.lake.models.User;
 import com.lukrzak.lake.lake.services.UserService;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -22,6 +24,8 @@ import static org.mockito.Mockito.verify;
 public class UserTest {
     @Autowired
     MockMvc mockMvc;
+    @Autowired
+    ObjectMapper objectMapper;
     @MockBean
     UserService userService;
     @Captor
@@ -30,11 +34,10 @@ public class UserTest {
     @Test
     public void create_users_returnIsCreated() throws Exception {
         User user = new User("testlogin", "testemail");
-        String userJson = "{\"login\":\"testlogin\",\"email\":\"testemail\"}";
 
         MvcResult result = mockMvc.perform(post("/api/v1/users")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(userJson))
+                        .content(this.objectMapper.writeValueAsString(user)))
                 .andExpect(status().isCreated())
                 .andReturn();
 
