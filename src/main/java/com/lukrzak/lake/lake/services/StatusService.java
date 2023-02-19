@@ -4,9 +4,9 @@ import com.lukrzak.lake.lake.models.Status;
 import com.lukrzak.lake.lake.repositories.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StatusService {
@@ -23,5 +23,14 @@ public class StatusService {
 
     public void addNewStatus(Status status){
         statusRepository.save(status);
+    }
+
+    public void changeUserStatus(Status newStatus){
+        Optional<Status> status = statusRepository.findById(newStatus.getId());
+        if(status.isPresent()) {
+            status.get().setStatus(newStatus.getStatus());
+            statusRepository.save(status.get());
+            System.out.println("Changed status " + status.get().getId() + " to " + newStatus.getStatus());
+        }
     }
 }
